@@ -14,14 +14,14 @@ public class Minesweeper {
       for (int i = 1; i <= M; i++) {
          for (int j = 1; j <= N; j++)
             if (bombs[i][j]) System.out.print("* ");
-            else             System.out.print(". ");
+            else            
+		 System.out.print(". ");
          System.out.println();
       }
 
       int[][] sol = new int[M+2][N+2];
       for (int i = 1; i <= M; i++)
          for (int j = 1; j <= N; j++)
-            // (ii, jj) indexes neighboring cells
             for (int ii = i - 1; ii <= i + 1; ii++)
                for (int jj = j - 1; jj <= j + 1; jj++)
                   if (bombs[ii][jj]) sol[i][j]++;
@@ -30,7 +30,8 @@ public class Minesweeper {
       for (int i = 1; i <= M; i++) {
          for (int j = 1; j <= N; j++)
             if (bombs[i][j]) System.out.print("* ");
-            else             System.out.print(sol[i][j] + " ");
+            else             
+		System.out.print(sol[i][j] + " ");
          System.out.println();
       }
    }
