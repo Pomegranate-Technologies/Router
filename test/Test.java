@@ -1,3 +1,4 @@
+package JavaTestFilePackage;
 import javax.swing.*;
 import java.awt.*;
 
