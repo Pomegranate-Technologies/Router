@@ -10,6 +10,4 @@
 
 -------IMAGES-------
 
-Ubuntu - http://ppl.ug/WljzuG-YL3E/
-
-Kali - http://ppl.ug/ae_dMmU_7MI/
+http://ppl.ug/HaqPtnVXuyM/
