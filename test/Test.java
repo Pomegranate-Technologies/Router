@@ -15,14 +15,12 @@ public class Test
 
 class NoahClass extends JFrame
 {
-	GUI g;
 	public NoahClass()
 	{
-		g = new GUI();
 		setSize(200, 200);
 		setResizable(false);
 		setVisible(true);
-		setContentPane(g);
+		setContentPane(new GUI());
 		
 		run();
 	}
@@ -31,7 +29,7 @@ class NoahClass extends JFrame
 	{
 		while(true)
 		{
-			g.repaint();
+			repaint();
 			try{
 				Thread.sleep(50);
 			}
