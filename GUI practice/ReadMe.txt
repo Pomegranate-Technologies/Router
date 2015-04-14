@@ -1,0 +1,1 @@
+Create your own implementation of the abstract class "Window".
