@@ -15,7 +15,7 @@ public class Main
         window.setSize(MyPanel.WIDTH, MyPanel.HEIGHT);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         window.setContentPane(new MyPanel());
 
         window.setResizable(false);
@@ -28,15 +28,15 @@ class MyPanel extends JPanel implements Runnable
 {
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
-	
+
 	private Thread thread;
-	
+
 	private BufferedImage image;
 	private Graphics2D g;
 	private boolean running;
-	
+
 	private WindowManager wm;
-	
+
 	public MyPanel()
 	{
 		super();
@@ -44,11 +44,11 @@ class MyPanel extends JPanel implements Runnable
 		setFocusable(true);
 		requestFocus();
 	}
-	
+
 	public void addNotify()
 	{
 		super.addNotify();
-		
+
 		if(thread == null)
 		{
 			addKeyListener(new Listen());
@@ -56,21 +56,21 @@ class MyPanel extends JPanel implements Runnable
 			thread.start();
 		}
 	}
-	
+
 	private void init()
 	{
 		image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
-		
+
 		running = true;
-		
+
 		wm = new WindowManager();
 	}
-	
+
 	public void run()
 	{
 		init();
-		
+
 		while(running)
 		{
 			for(int x = 0; x < wm.getTime(); x++)
@@ -83,17 +83,18 @@ class MyPanel extends JPanel implements Runnable
 				}
 				catch(InterruptedException e){e.printStackTrace();}
 			}
+			wm.shift();
 		}
 	}
 
 	private void update() {
 	       wm.update();
 	}
-	
+
 	private void draw() {
 	       wm.draw(g);
 	}
-	
+
 	private void drawToScreen() {
 	        Graphics g2 = getGraphics();
 	        g2.drawImage(image, 0, 0, null);
@@ -103,7 +104,7 @@ class MyPanel extends JPanel implements Runnable
 	class Listen implements KeyListener
 	{
 	    public void keyTyped(KeyEvent k) {
-	
+
 	    }
 	    public void keyPressed(KeyEvent k) {
 			wm.keyPressed(k.getKeyCode());
@@ -111,9 +112,9 @@ class MyPanel extends JPanel implements Runnable
 			drawToScreen();
 	    }
 	    public void keyReleased(KeyEvent k) {
-	
+
 	    }
-	
+
 	}
 }
 
@@ -125,10 +126,11 @@ class WindowManager
     public WindowManager()
     {
 		windows = new ArrayList<Window>();
-		
+
 		windows.add(new ExampleWindow(this));
+		windows.add(new WillsGUI(this));
     }
-    
+
     public void shift()
     {
     	if(currentState < windows.size())
@@ -140,7 +142,7 @@ class WindowManager
     		currentState = 0;
     	}
     }
-    
+
     public int getCurrentState()
     {
     	return currentState;
@@ -165,12 +167,12 @@ class WindowManager
     {
 		windows.get(currentState).keyPressed(k);
     }
-    
+
     public int getDelay()
     {
     	return windows.get(currentState).getDelay();
     }
-    
+
     public int getTime()
     {
     	return windows.get(currentState).getTime();
