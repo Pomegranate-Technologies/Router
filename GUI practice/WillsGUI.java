@@ -25,7 +25,7 @@ class WillsGUI extends Window
 
 		g.setColor(c1);
 
-		g.drawRect(30,64,23,89);
+		g.fillRect(30,64,23,89);
 	}
 
 	public void keyPressed(int k)

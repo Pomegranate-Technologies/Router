@@ -9,8 +9,8 @@ class ExampleWindow extends Window
 	public ExampleWindow(WindowManager w)
 	{
 		this.wm = w;
-		delay = 100;
-		time = 10;
+		delay = 30;
+		time = 1000;
 		f = new Font("Impact",Font.BOLD,150);
 	}
 

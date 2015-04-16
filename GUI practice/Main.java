@@ -78,11 +78,19 @@ class MyPanel extends JPanel implements Runnable
 				update();
 				draw();
 				drawToScreen();
-				try{
-					Thread.sleep(wm.getDelay());
+				int current = x;
+				
+				while(x < current + wm.getDelay())
+				{
+					try{
+						Thread.sleep(1);
+					}catch(InterruptedException e){e.printStackTrace();}
+					x++;
 				}
-				catch(InterruptedException e){e.printStackTrace();}
 			}
+			g.setColor(new Color(255,255,255));
+			g.fillRect(0,0,WIDTH,HEIGHT);
+			drawToScreen();
 			wm.shift();
 		}
 	}
@@ -133,7 +141,7 @@ class WindowManager
 
     public void shift()
     {
-    	if(currentState < windows.size())
+    	if(currentState < windows.size() - 1)
     	{
     		currentState++;
     	}

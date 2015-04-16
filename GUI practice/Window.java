@@ -1,7 +1,7 @@
 abstract class Window
 {
 	int delay = 30;
-	int time = 300;
+	int time = 3000;
 	protected WindowManager wm;
 
 	public abstract void update();
