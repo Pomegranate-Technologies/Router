@@ -38,7 +38,7 @@ class Enviroment
 		}
 		public void paintComponent(Graphics g)
 		{
-			mainOutput.setText("hello");
+			mainOutput.setText(""+sock.getLocalAddress());
 		}
 	}
 }
